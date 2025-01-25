@@ -1,0 +1,57 @@
+﻿@using UserTable.Models
+
+@{
+    ViewData["Title"] = "Manage";
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+    <link rel="stylesheet" href="~/css/manage.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="table-container">
+        <div class="action-buttons">
+            <div class="buttons">
+                <button class="btn lock" id="block-btn">Block</button>
+                <button class="btn unlock" id="unblock-btn">Unblock</button>
+                <button class="btn delete" id="delete-btn">Delete</button>
+            </div>
+            <input type="text" id="filter-input" class="filter-input" placeholder="Filter by name or email" />
+        </div>
+        <table id="usersTable" class="user-table">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="select-all" />
+                    </th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Last seen</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr class="user-row @(user.LockoutEnabled ? "locked" : "")">
+                        <td>
+                            <input type="checkbox" class="user-checkbox" value="@user.Email" />
+                        </td>
+                        <td class="user-name">@user.Name</td>
+                        <td class="user-email">@user.Email</td>
+                        <td>
+                            <span class="last-seen">@user.LastLoginTime.ToString("g")</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    <script src="~/js/table.js"></script>
+}
