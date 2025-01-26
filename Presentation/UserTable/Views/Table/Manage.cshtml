@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="~/css/manage.css" asp-append-version="true" />
 </head>
 <body>
+    <div class="logout-container">
+        <form asp-controller="Account" asp-action="Logout" method="post" style="display: inline;">
+            <button type="submit" class="btn logout" id="logout-btn">Logout</button>
+        </form>
+    </div>
+
     <div class="table-container">
         <div class="action-buttons">
             <div class="buttons">
