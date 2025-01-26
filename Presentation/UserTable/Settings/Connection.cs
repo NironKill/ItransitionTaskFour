@@ -9,7 +9,7 @@ namespace UserTable.Settings
             if (!string.IsNullOrEmpty(defaultConnection))            
                 return defaultConnection;
             
-            string envString = Environment.GetEnvironmentVariable(DataBaseSet.Configuration);
+            string envString = Environment.GetEnvironmentVariable("DATA_CON");
 
             return envString;
         }
