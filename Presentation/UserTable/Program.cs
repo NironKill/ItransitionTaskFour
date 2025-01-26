@@ -12,6 +12,7 @@ using UserTable.Application.Services.Interfaces;
 using UserTable.Domain;
 using UserTable.Persistence;
 using UserTable.Persistence.Settings;
+using UserTable.Settings;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -70,7 +71,8 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<DataBaseSet>(builder.Configuration.GetSection(DataBaseSet.Configuration));
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetSection(DataBaseSet.Configuration).Get<DataBaseSet>().ConnectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Connection.GetConfiguration(
+    builder.Configuration.GetSection(DataBaseSet.Configuration).Get<DataBaseSet>().ConnectionString)));
 builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
