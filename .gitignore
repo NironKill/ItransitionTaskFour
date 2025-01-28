@@ -5,6 +5,7 @@
 
 # Configuration for local development
 appsettings.Development.json
+UserTable.db
 
 # User-specific files
 *.rsuser

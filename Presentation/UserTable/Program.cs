@@ -71,7 +71,7 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<DataBaseSet>(builder.Configuration.GetSection(DataBaseSet.Configuration));
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Connection.GetConfiguration(
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Connection.GetConfiguration(
     builder.Configuration.GetSection(DataBaseSet.Configuration).Get<DataBaseSet>().ConnectionString)));
 builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
